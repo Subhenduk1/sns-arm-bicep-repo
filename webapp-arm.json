@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2022-03-01",
+      "name": "sns-armAppServicePlan",
+      "location": "AustraliaSoutheast",
+      "sku": { "name": "F1", "capacity": 1 },
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-03-01",
+      "name": "sns-armWebAppDemo",
+      "location": "AustraliaSoutheast",
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'sns-armAppServicePlan')]"
+      }
+    }
+  ]
+}
